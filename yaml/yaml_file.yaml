@@ -1,0 +1,57 @@
+#name: |
+#  Peter
+#  Olga
+
+# {'name': 'Peter\nOlga'}
+
+#name:
+#  - Peter
+#  - Olga
+#
+# {'name': '-Peter -Olga'}
+
+#name:
+#  - Peter: 32
+#  - Olga: 31
+#
+#  {'name': {'-Peter': 32, '-Olga': 31}}
+
+#name:
+#  - Peter: 32
+#    Yura: 30
+#
+#  - Olga: 31
+#    Macha: 30
+#
+#  {'name': {'-Peter': 32, 'Yura': 30, '-Olga': 31, 'Macha': 30}}
+
+#team:
+#  backend:
+#    - Peter:
+#        position: junior
+#        salary: 10000
+#    - Yura:
+#        position: junior
+#        salary: 10000
+#  frontend:
+#    - Olga:
+#        position: junior
+#        salary: 10000
+#    - Macha:
+#        position: junior
+#        salary: 10000
+
+#        {'team': {'backend': [{'Peter': {'position': 'junior', 'salary': 10000}}, {'Yura': {'position': 'junior', 'salary': 10000}}], 'frontend': [{'Olga': {'position': 'junior', 'salary': 10000}}, {'Macha': {'position': 'junior', 'salary': 10000}}]}}
+
+#В файлах YAML есть знак & (якорь – шаблон) и знак <<: (ссылка на якорь  - шаблон), чтобы одни и те же записи не повторять много раз
+junior:
+  &junior
+  position: junior
+  salary: 10000
+
+team:
+  backend:
+    - Peter:
+        <<: *junior
+    - Yura:
+        <<: *junior
